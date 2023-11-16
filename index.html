@@ -13,7 +13,7 @@
  <div style='margin:auto; width:96%;'>
  	<button onclick="render()">Run code!</button>
  	<button onclick='example()'>Load example!</button>
-    <button onlick='download()'>Download as HTML file!</button>
+    <button onclick='download()'>Download as HTML!</button>
  </div><br>
 
  
@@ -70,7 +70,22 @@ function example() {
 
 
 function download() {
-	alert('Coming soon!')
+    htmlbox = document.getElementById('html').value
+    downloadfile = String(htmlbox)
+    const file = new File([downloadfile], 'download.html', {
+      type: 'text/plain',
+    })
+
+    const link = document.createElement('a')
+    const url = URL.createObjectURL(file)
+
+    link.href = url
+    link.download = file.name
+    document.body.appendChild(link)
+    link.click()
+
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
 }
 </script>
 
