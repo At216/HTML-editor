@@ -1,34 +1,40 @@
- <!DOCTYPE html>
- <span>
-    This site is under construction. It will be an HTML code editor and renderer. Write HTML and JavaScript code in the left box, 
-    and CSS code in the right box. Your code will run in the rectangular window below the code boxes. New updates to this website 
-    will be coming, stay tuned for changes in design and layout!<br><br>
-    This site has not been heavily tested, but basic HTML, JavaScript, and CSS all work!
-    </span>
- 
 
- <br><br><button onclick="render()">Run code!</button><br>
+ <!DOCTYPE html>
+ <h1>Welcome to at216.github.io/HTML-editor/!</h1>
+ <span>This is a basic HTML, CSS, and JavaScript code editor great for 
+ experimenting and practicing with programming web pages. Write HTML and  JavaScript code in the left box, and CSS code in the right box. Your  code will run in the rectangular window above the code boxes. New  updates to this website will be coming, stay tuned for changes in design and layout, as well as an option to download your program directly as an HTML file!<br><br>
+    </span>
+
  
- <textarea id='html' style='float:left'></textarea>
- <textarea id='css' style='float:right'></textarea>
- <!--<textarea id='js'></textarea>-->
- 
- <br><br>
  <div class='iframebox' id="main-d">
     <!--<span>Code shows up here</span>-->
     <iframe id='iframe'></iframe>
  </div><br>
+ <div style='margin:auto; width:96%;'>
+ 	<button onclick="render()">Run code!</button>
+ 	<button onclick='example()'>Load example!</button>
+ </div><br>
+
+ 
+ <div class='textareabox'>
+ <textarea id='html' style=''></textarea>
+ </div>
+ 
+ <br><br>
+ 
 
 <style>
     textarea{
-        width:45%;
+        width:100%;
         height:100px;
-        min-height:100px;
+        min-height:200px;
         resize: vertical;
-        margin:2%;
-        /*The HTML and CSS boxes are offset weird when the window is shortened horizontally */
-        /*textareas are set to float left and right. That's also why display: inline-block doesn't */
-        /*really work as expected */
+        margin:auto;
+    }
+    .textareabox {
+    	margin:auto;
+        width:96%;
+        height:auto;
     }
     .iframebox {
         margin:auto;
@@ -42,23 +48,11 @@
     }
 </style>
 <script>
-document.getElementById('html').value = '<!--HTML and JS code here-->\n<!DOCTYPE html>\n\n<script>\n\n<\/script>'
-document.getElementById('css').value = '/*CSS code here*/\n'
+document.getElementById('html').value = '<!-- Write HTML, CSS, JS code below! -->\n<!DOCTYPE html>\n\n<style>\n</style>\n\n<script>\n<\/script>'
 
 function render() {
     htmlbox = document.getElementById('html').value
-    cssbox = document.getElementById('css').value
-    //jsbox = document.getElementById('js').value
-    string = String(htmlbox) + '\n<style>\n' + String(cssbox) + '\n</style>' //+ '\n<script>\n' + String(jsbox) + '\n<script>'
-
-    //renderbox = document.getElementById('main-d')
-    //renderbox.innerHTML = string
-    
-    //document.getElementById('iframe').src = "about:blank"
-    //var myFrameDoc = document.getElementById('iframe').contentDocument;
-    
-    //myFrameDoc.write(string);
-
+    string = String(htmlbox) 
     var iframe = document.getElementById("iframe");
 
     iframe.contentWindow.document.open();
@@ -68,5 +62,9 @@ function render() {
 
 }
 
+
+function example() {
+	document.getElementById('html').value = "<!DOCTYPE html> \n<p class='welcome' id='welcome'>Hello HTML editor! </p> \n<!--The above line writes 'Hello HTML editor' to the viewing window--> \n<button onclick='clicked()'>Click me!</button> \n<!--The above line makes a button that performs the JavaScript function 'clicked()' when pressed--> \n\n<style> /*The <style> tag indicates code for CSS. */ \n.welcome { \n	color:green; \n	/*The above line makes the HTML text green*/ \n} \n</style> \n\n<script> //The <script> tag indicates code for JavaScript \nfunction clicked() { \n	document.getElementById('welcome').style.color = 'blue' \n	//The above line changes the text color to blue \n} \n</sc" + "ript>"
+}
 </script>
 
