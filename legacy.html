@@ -1,0 +1,73 @@
+
+ <!DOCTYPE html>
+ <span>
+    This site is under construction. It will be an HTML code editor and renderer. Write HTML and JavaScript code in the left box, 
+    and CSS code in the right box. Your code will run in the rectangular window below the code boxes. New updates to this website 
+    will be coming, stay tuned for changes in design and layout!<br><br>
+    This site has not been heavily tested, but basic HTML, JavaScript, and CSS all work!
+    </span>
+ 
+
+ <br><br><button onclick="render()">Run code!</button><br>
+ 
+ <textarea id='html' style='float:left'></textarea>
+ <textarea id='css' style='float:right'></textarea>
+ <!--<textarea id='js'></textarea>-->
+ 
+ <br><br>
+ <div class='iframebox' id="main-d">
+    <!--<span>Code shows up here</span>-->
+    <iframe id='iframe'></iframe>
+ </div><br>
+
+<style>
+    textarea{
+        width:45%;
+        height:100px;
+        min-height:100px;
+        resize: vertical;
+        margin:2%;
+        /*The HTML and CSS boxes are offset weird when the window is shortened horizontally */
+        /*textareas are set to float left and right. That's also why display: inline-block doesn't */
+        /*really work as expected */
+    }
+    .iframebox {
+        margin:auto;
+        width:96%;
+        height:300px;
+    }
+    iframe {
+        width:100%;
+        height:300px;
+        border-color:grey;
+    }
+</style>
+<script>
+document.getElementById('html').value = '<!--HTML and JS code here-->\n<!DOCTYPE html>\n\n<script>\n\n<\/script>'
+document.getElementById('css').value = '/*CSS code here*/\n'
+
+function render() {
+    htmlbox = document.getElementById('html').value
+    cssbox = document.getElementById('css').value
+    //jsbox = document.getElementById('js').value
+    string = String(htmlbox) + '\n<style>\n' + String(cssbox) + '\n</style>' //+ '\n<script>\n' + String(jsbox) + '\n<script>'
+
+    //renderbox = document.getElementById('main-d')
+    //renderbox.innerHTML = string
+    
+    //document.getElementById('iframe').src = "about:blank"
+    //var myFrameDoc = document.getElementById('iframe').contentDocument;
+    
+    //myFrameDoc.write(string);
+
+    var iframe = document.getElementById("iframe");
+
+    iframe.contentWindow.document.open();
+    iframe.contentWindow.document.write(string);
+    iframe.contentWindow.document.close();
+    console.log(string)
+
+}
+
+</script>
+
