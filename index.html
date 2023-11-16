@@ -13,6 +13,7 @@
  <div style='margin:auto; width:96%;'>
  	<button onclick="render()">Run code!</button>
  	<button onclick='example()'>Load example!</button>
+    <button onlick='download()'>Download as HTML file!</button>
  </div><br>
 
  
@@ -65,6 +66,11 @@ function render() {
 
 function example() {
 	document.getElementById('html').value = "<!DOCTYPE html> \n<p class='welcome' id='welcome'>Hello HTML editor! </p> \n<!--The above line writes 'Hello HTML editor' to the viewing window--> \n<button onclick='clicked()'>Click me!</button> \n<!--The above line makes a button that performs the JavaScript function 'clicked()' when pressed--> \n\n<style> /*The <style> tag indicates code for CSS. */ \n.welcome { \n	color:green; \n	/*The above line makes the HTML text green*/ \n} \n</style> \n\n<script> //The <script> tag indicates code for JavaScript \nfunction clicked() { \n	document.getElementById('welcome').style.color = 'blue' \n	//The above line changes the text color to blue \n} \n</sc" + "ript>"
+}
+
+
+function download() {
+	alert('Coming soon!')
 }
 </script>
 
