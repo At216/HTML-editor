@@ -1,0 +1,91 @@
+
+ <!DOCTYPE html>
+ <h1>Welcome to at216.github.io/HTML-editor/!</h1>
+ <span>This is a basic HTML, CSS, and JavaScript code editor great for 
+ experimenting and practicing with programming web pages. Write HTML and  JavaScript code in the left box, and CSS code in the right box. Your  code will run in the rectangular window above the code boxes. 
+ Press 'Run code!' to render your HTML program, press 'Load example!' to see a HTML demo, and press 'Download as HTML!' to download your file as a HTML website!<br><br>
+    </span>
+
+ 
+ <div class='iframebox' id="main-d">
+    <!--<span>Code shows up here</span>-->
+    <iframe id='iframe'></iframe>
+ </div><br>
+ <div style='margin:auto; width:96%;'>
+ 	<button onclick="render()">Run code!</button>
+ 	<button onclick='example()'>Load example!</button>
+    <button onclick='download()'>Download as HTML!</button>
+ </div><br>
+
+ 
+ <div class='textareabox'>
+ <textarea id='html' style=''></textarea>
+ </div>
+ 
+ <br><br><br><br><br><br>
+ 
+
+<style>
+    textarea{
+        width:100%;
+        height:100px;
+        min-height:200px;
+        resize: vertical;
+        margin:auto;
+    }
+    .textareabox {
+    	margin:auto;
+        width:96%;
+        height:auto;
+    }
+    .iframebox {
+        margin:auto;
+        width:96%;
+        height:300px;
+    }
+    iframe {
+        width:100%;
+        height:300px;
+        border-color:grey;
+    }
+</style>
+<script>
+document.getElementById('html').value = '<!-- Write HTML, CSS, JS code below! -->\n<!DOCTYPE html>\n\n<style>\n</style>\n\n<script>\n<\/script>'
+
+function render() {
+    htmlbox = document.getElementById('html').value
+    string = String(htmlbox) 
+    var iframe = document.getElementById("iframe");
+
+    iframe.contentWindow.document.open();
+    iframe.contentWindow.document.write(string);
+    iframe.contentWindow.document.close();
+    console.log(string)
+
+}
+
+
+function example() {
+	document.getElementById('html').value = "<!DOCTYPE html> \n<p class='welcome' id='welcome'>Hello HTML editor! </p> \n<!--The above line writes 'Hello HTML editor' to the viewing window--> \n<button onclick='clicked()'>Click me!</button> \n<!--The above line makes a button that performs the JavaScript function 'clicked()' when pressed--> \n\n<style> /*The <style> tag indicates code for CSS. */ \n.welcome { \n	color:green; \n	/*The above line makes the HTML text green*/ \n} \n</style> \n\n<script> //The <script> tag indicates code for JavaScript \nfunction clicked() { \n	document.getElementById('welcome').style.color = 'blue' \n	//The above line changes the text color to blue \n} \n</sc" + "ript>"
+}
+
+
+function download() {
+    htmlbox = document.getElementById('html').value
+    downloadfile = String(htmlbox)
+    const file = new File([downloadfile], 'download.html', {
+      type: 'text/plain',
+    })
+
+    const link = document.createElement('a')
+    const url = URL.createObjectURL(file)
+
+    link.href = url
+    link.download = file.name
+    document.body.appendChild(link)
+    link.click()
+
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
+}
+</script>
